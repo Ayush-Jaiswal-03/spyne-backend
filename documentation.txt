@@ -1,0 +1,150 @@
+BaseUrl
+http://localhost:8080
+Authentication
+Most routes require authentication using a JWT token. Send the token in the Authorization header as:
+Authorization: Bearer <token>
+
+--------------------------------------------------------------
+1. Register User
+Endpoint:
+POST /api/users/register
+
+Description:
+Registers a new user.
+
+Request Body:
+{
+  "name": "user",
+  "email": "user@gmail.com",
+  "password": "123456"
+}
+Response:
+{
+  "_id": "679a953404f9f8783ae78094",
+  "name": "user",
+  "email": "user@gmail.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWE5NTM0MDRmOWY4NzgzYWU3ODA5NCIsImlhdCI6MTczODE4Mzk4OSwiZXhwIjoxNzQwNzc1OTg5fQ.kL6Do2T9QXpN9l7ZF5Px7usIbSshgDsAerPtm1jBd20"
+}
+--------------------------------------------------------------
+2. Login User
+Endpoint:
+POST /api/users/login
+
+Description:
+Logs in an existing user.
+
+Request Body:
+{
+  "email": "user@gmail.com",
+  "password": "123456"
+}
+Response: 
+{
+  "_id": "679a953404f9f8783ae78094",
+  "name": "user",
+  "email": "123456",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWE5NTM0MDRmOWY4NzgzYWU3ODA5NCIsImlhdCI6MTczODE4Mzk4OSwiZXhwIjoxNzQwNzc1OTg5fQ.kL6Do2T9QXpN9l7ZF5Px7usIbSshgDsAerPtm1jBd20"
+}
+---------------------------------------------------------------------------
+Car Routes
+1. Create Car
+Endpoint:
+POST /api/cars
+
+Authentication:
+Requires authentication (Bearer token)
+
+Request Body (Multipart/Form-Data with File Uploads):
+title(string) required
+description(string) required
+car_type(string) optional
+images(array[string]) optional
+dealer(string) optional
+brand(string) optional
+
+Response:
+{
+"user": 679a953404f9f8783ae78094,
+"title" : "Mustang",
+"description": "2.3L EcoBoost Engine With 315 hp68
+		Selectable Drive Modes
+		12.4" Digi…",
+"tags": {"car_type": "Sports",
+	 "company": "Ford"
+	 "dealer": "NA"
+	},
+}
+
+2. Get All Cars
+Endpoint:
+GET /api/cars
+
+Authentication:
+Requires authentication (Bearer token)
+
+Response:
+[
+{
+"user": 679a953404f9f8783ae78094,
+"title" : "Mustang",
+"description": "2.3L EcoBoost Engine With 315 hp68
+		Selectable Drive Modes
+		12.4" Digi…",
+"tags": {"car_type": "Sports",
+	 "company": "Ford"
+	 "dealer": "NA"
+	},
+}
+]
+3. Get Car By ID
+Endpoint:
+GET /api/cars/:id
+
+Authentication:
+Requires authentication (Bearer token)
+
+Response:
+{
+"user": 679a953404f9f8783ae78094,
+"title" : "Mustang",
+"description": "2.3L EcoBoost Engine With 315 hp68
+		Selectable Drive Modes
+		12.4" Digi…",
+"tags": {"car_type": "Sports",
+	 "company": "Ford"
+	 "dealer": "NA"
+	},
+}
+
+4. Update Car
+Endpoint:
+PUT /api/cars/:id
+
+Authentication:
+Requires authentication (Bearer token)
+
+Request Body (Multipart/Form-Data with File Uploads):
+
+Response:
+{
+"user": 679a953404f9f8783ae78094,
+"title" : "Mustang",
+"description": "2.3L EcoBoost Engine With 315 hp68
+		Selectable Drive Modes
+		12.4" Digi…",
+"tags": {"car_type": "Sports",
+	 "company": "Ford"
+	 "dealer": "NA"
+	},
+}
+5. Delete Car
+Endpoint:
+DELETE /api/cars/:id
+
+Authentication:
+Requires authentication (Bearer token)
+
+Response:
+{
+  "message": "Car deleted successfully"
+}
